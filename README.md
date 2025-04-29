@@ -2,99 +2,53 @@
 
 This repository contains the **public YAML configuration files** used by the LogViewer tool.
 
-The configuration system is designed to be **modular**, **mergeable**, and **fallback-safe**, supporting both online use and offline usage via local caching.
+The configuration system is designed to make it easy to extend, override, and work offline.
 
 ➡️ View/edit directly in VSCode online:  
 [https://vscode.dev/github/KooleControls/LogViewerConfig](https://vscode.dev/github/KooleControls/LogViewerConfig)
 
 
+## ✍️ Add your own organisations
 
-## 📂 Repository Layout
-
-```
-Sources.yaml                # Top-level config listing all config files
-schema.json                 # JSON schema for VSCode validation/autocomplete
-Gateway/
-  ├─ Gateway.yaml           # Entry point for Gateway config group
-  ├─ ...
-```
-
-
-## 📁 Root Config Location
-
-The application reads the main config from:
-
-```
-%LOCALAPPDATA%\LogViewer\config.yaml
-```
-
-If it doesn’t exist, it is created with a default that points to this repository.
-
-
-
-## 🔗 Example Root Config File
-
-This file defines which sources should be loaded:
+You can add custom organisation settings by creating a local YAML file:
 
 ```yaml
-sources:
-  - https://raw.githubusercontent.com/KooleControls/LogViewerConfig/main/Sources.yaml
+#%LOCALAPPDATA%\LogViewer\user\organisations.yaml
+organisations:
+  - name: My Company
+    uri: https://api.mycompany.com/api
+    organisationId: 42
+    authenticationMethod: GetOAuth2_OpenIdConnectClient
+    authPath: https://accounts.mycompany.com/realms/myrealm
 ```
 
-Each file can include more sources using the `sources:` property, enabling recursive inclusion of config fragments grouped by device, domain, or purpose.
-
-
-
-### ✍️ Overriding with Local Files
-
-You can extend the configuration by pointing to local files:
+Next add a new source to the config file on your pc.
+If it doesn’t exist, you can start the tool, it will be created automatically.
 
 ```yaml
-# %LOCALAPPDATA%\LogViewer\config.yaml
+#%LOCALAPPDATA%\LogViewer\config.yaml
 sources:
   - https://raw.githubusercontent.com/KooleControls/LogViewerConfig/main/Sources.yaml
-  - C:\Path\To\Your\Local\Dev\Copy\Sources.yaml
+  - %LOCALAPPDATA%\LogViewer\user\organisations.yaml
 ```
 
-Or you can fully override it (ignoring the public config):
+**Or override** the configuration entirely:
 
 ```yaml
 sources:
 #  - https://raw.githubusercontent.com/KooleControls/LogViewerConfig/main/Sources.yaml
-  - C:\Path\To\Your\Local\Dev\Copy\Sources.yaml
+  - %LOCALAPPDATA%\LogViewer\user\organisations.yaml
 ```
 
 
+## ✅ Features Overview
 
-## 🔁 How Merging Works
+| Feature | Description |
+|:--------|:------------|
+| 🔄 **Merging** | Profiles, traces, and settings are merged based on their name/type |
+| 🔗 **Recursive loading** | Config files can include other sources recursively |
+| 💾 **Caching** | Remote configs are cached locally for offline use |
+| ✍️ **Schema-based editing** | VSCode supports YAML validation and autocomplete via `schema.json` |
+| 🔒 **Offline fallback** | Always uses the last cached version if offline or unreachable |
 
-- Config files are **merged in order** (from top to bottom).
-- Each file may load other files recursively.
-- Duplicate keys (e.g., a profile named `Gateway`) are **merged by key**.
-- Lists like `traces:` are grouped by name and merged using type-specific rules.
-
-
-
-## 💾 Caching Behavior
-
-When a remote file is loaded:
-
-- It is cached locally at  
-  `%LOCALAPPDATA%\LogViewer\cache\{hash}.yaml`
-- If the app is offline or the remote is unreachable, the cached version is used.
-- Cached files are not automatically deleted, ensuring offline fallback is always available.
-
-
-
-## ✅ Schema Support
-
-The included `schema.json` provides autocomplete and validation support in VSCode (with the YAML extension).
-
-To enable schema hints automatically, add this to your VSCode `settings.json`:
-
-```json
-"yaml.schemas": {
-  "https://raw.githubusercontent.com/KooleControls/LogViewerConfig/main/schema.json": "/*.yaml"
-}
-```
 
