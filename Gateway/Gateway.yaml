@@ -1,5 +1,3 @@
-# yaml-language-server: $schema=../schema.json
-
 sources:
  - Filter.yaml
  - Gateway.yaml
@@ -12,4 +10,3 @@ sources:
  - Thermostat.yaml
  - Unknown.yaml
 
- 

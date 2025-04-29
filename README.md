@@ -2,139 +2,101 @@
 
 This repository contains the **public YAML configuration files** used by the LogViewer tool.
 
-The configuration system is designed to be **modular**, **mergeable**, and **fallback-safe**, supporting both online use and offline usage with caching.
+The configuration system is designed to be **modular**, **mergeable**, and **fallback-safe**, supporting both online use and offline usage via local caching.
+
+➡️ View/edit directly in VSCode online:  
+[https://vscode.dev/github/KooleControls/LogViewerConfig](https://vscode.dev/github/KooleControls/LogViewerConfig)
+
 
 
 ## 📂 Repository Layout
 
 ```
-Sources.yaml                 # Top-level config listing all profiles/groups
-schema.json                 # JSON schema for editor validation
-Organisations.yaml          # Optional shared config
+Sources.yaml                # Top-level config listing all config files
+schema.json                 # JSON schema for VSCode validation/autocomplete
+Organisations.yaml          # Contains API settings (e.g., credentials or endpoints)
+
 Gateway/
   ├─ Gateway.yaml           # Entry point for Gateway config group
-  ├─ IndoorUnit0Trace.yaml  # Traces for IU 0
   ├─ ...
-  └─ UnknownLogcodes.yaml   # Catch-all trace file
 ```
 
----
 
-## 🔗 Configuration Sources
+## 📁 Root Config Location
 
-The application loads configuration from one or more **sources**.
-
-A typical `config.yaml` looks like:
-
-```yaml
-sources:
-  - https://raw.githubusercontent.com/your-org/logviewerconfig/main/Sources.yaml
-```
-
-Each source can load additional sources recursively (via the `sources:` property in YAML), enabling grouped or layered configurations.
-
----
-
-## 🗂 How Merging Works
-
-- Config files are **merged in order**, recursively.
-- The base config loads first, then overlay files merge in.
-- Objects with the same key (e.g., a profile with the same name) are merged.
-- Lists of named items (like `traces`) are grouped by name and merged by type.
-- The merging behavior is defined in code using a flexible "type merger" system.
-
----
-
-## 💾 Caching Behavior
-
-When a file is loaded from a remote source:
-- It is downloaded and saved to `%LOCALAPPDATA%/LogViewer/cache/{hash}.yaml`.
-- If the app is **offline**, the cached copy is used.
-- Cache is not automatically purged — so you always have a last known good version.
-
----
-
-## 📁 Local Configuration File
-
-The app looks for a config file here:
+The application reads the main config from:
 
 ```
 %LOCALAPPDATA%\LogViewer\config.yaml
 ```
 
-This file defines which source(s) to load.  
-If it doesn’t exist, it is initialized with a default that points to this repository.
+If it doesn’t exist, it is created with a default that points to this repository.
 
-### ✍️ To override locally:
 
-1. Create or edit the config:
+
+## 🔗 Example Root Config File
+
+This file defines which sources should be loaded:
+
+```yaml
+sources:
+  - https://raw.githubusercontent.com/KooleControls/LogViewerConfig/main/Sources.yaml
+```
+
+Each file can include more sources using the `sources:` property, enabling recursive inclusion of config fragments grouped by device, domain, or purpose.
+
+
+
+### ✍️ Overriding with Local Files
+
+You can extend the configuration by pointing to local files:
 
 ```yaml
 # %LOCALAPPDATA%\LogViewer\config.yaml
 sources:
+  - https://raw.githubusercontent.com/KooleControls/LogViewerConfig/main/Sources.yaml
   - C:\Path\To\Your\Local\Dev\Copy\Sources.yaml
 ```
 
-2. You can now develop/test against local YAML files instead of the online repo.
-
----
-
-## 🛠 Editing Config Files
-
-- Each group (like `Gateway/`) has a main file (`Gateway.yaml`) that includes others.
-- Files are linked together via the `sources:` array.
-- You can validate changes using the JSON Schema (`schema.json`) in this repo.
-- Editors like VSCode can use this schema for autocomplete and validation.
-
----
-
-## ✅ Best Practices
-
-- Use consistent naming: `IndoorUnit0Trace.yaml`, not `Indoorunit 0 traces.yaml`
-- Avoid spaces in filenames
-- Use the `$schema` property in local YAML files for schema validation:
+Or you can fully override it (ignoring the public config):
 
 ```yaml
-$schema: https://raw.githubusercontent.com/your-org/logviewerconfig/main/schema.json
+sources:
+#  - https://raw.githubusercontent.com/KooleControls/LogViewerConfig/main/Sources.yaml
+  - C:\Path\To\Your\Local\Dev\Copy\Sources.yaml
 ```
 
----
 
-## 🤖 Schema Validation
 
-To enable YAML validation in VSCode:
-1. Install the **YAML Language Support** extension.
-2. Add this to your `settings.json`:
+## 🔁 How Merging Works
+
+- Config files are **merged in order** (from top to bottom).
+- Each file may load other files recursively.
+- Duplicate keys (e.g., a profile named `Gateway`) are **merged by key**.
+- Lists like `traces:` are grouped by name and merged using type-specific rules.
+
+
+
+## 💾 Caching Behavior
+
+When a remote file is loaded:
+
+- It is cached locally at  
+  `%LOCALAPPDATA%\LogViewer\cache\{hash}.yaml`
+- If the app is offline or the remote is unreachable, the cached version is used.
+- Cached files are not automatically deleted, ensuring offline fallback is always available.
+
+
+
+## ✅ Schema Support
+
+The included `schema.json` provides autocomplete and validation support in VSCode (with the YAML extension).
+
+To enable schema hints automatically, add this to your VSCode `settings.json`:
 
 ```json
 "yaml.schemas": {
-  "https://raw.githubusercontent.com/your-org/logviewerconfig/main/schema.json": "/*.yaml"
+  "https://raw.githubusercontent.com/KooleControls/LogViewerConfig/main/schema.json": "/*.yaml"
 }
 ```
-
-Now you’ll get real-time validation and autocomplete when editing the YAML files.
-
----
-
-## 📢 Contributions
-
-You are welcome to:
-- Add new profiles or trace files
-- Fix or improve existing mappings
-- Submit suggestions via issues or pull requests
-
----
-
-## 🧠 Need Help?
-
-Ping the developers maintaining LogViewer, or check the internal documentation for advanced type merging and trace logic.
-
----
-```
-
----
-
-Let me know if you'd like to generate a clickable directory tree or include example trace definitions as well!
-
-https://vscode.dev/github/KooleControls/LogViewerConfig
 

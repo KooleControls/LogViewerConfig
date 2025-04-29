@@ -1,5 +1,3 @@
-# yaml-language-server: $schema=../schema.json
-
 filters:
   - name: MiscCodes
     criteriaSets:

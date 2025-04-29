@@ -1,5 +1,3 @@
-# yaml-language-server: $schema=./schema.json
-
 organisations:
 - name: Koole Controls
   uri: https://api.koolecontrols.nl/kc/live/api

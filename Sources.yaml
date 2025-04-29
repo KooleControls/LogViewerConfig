@@ -1,7 +1,4 @@
-# yaml-language-server: $schema=./schema.json
-
 sources:
   - Gateway/Gateway.yaml
 
 
-  
