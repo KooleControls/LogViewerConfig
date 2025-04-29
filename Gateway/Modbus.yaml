@@ -1,0 +1,36 @@
+# yaml-language-server: $schema=../schema.json
+profiles:
+  - name: Gateway
+    traces:
+      - name: Modbus error
+        unit: ""
+        color: 0xFFFF4D4D
+        drawStyle: State
+        drawOption: ExtendEnd, DrawNames
+        visible: WhenData
+        offset: -38
+        stateNames:
+          0 :	NoError 				
+          1 :	IlligalFunction 		
+          2 :	IlligalDataAddress 		
+          3 :	IllegalDataValue 		
+          4 :	SlaveDeviceFailure 		
+          5 :	InvalidArguments 		
+          6 :	InvalidReplyLength 		
+          7 :	UnknownException 		
+          8 :	InvalidReplyFunctionCode
+          9 :	Timeout 				
+          10:	MutexFailed 			
+          11:	Disconnected 			
+          12:	OutOfMemory 			
+          13:	InsufficientRxBufferSize
+          14:	NotImplemented 			
+          15:	InvalidCRC 				
+          16:	InvalidDeviceReply 	
+        includeLogs:
+          criteriaSets:
+            - conditions:
+              - key: SoftwareId
+                value: SmarthomeGateway
+              - key: LogCode
+                value: CMN_ModbusError
