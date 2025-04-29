@@ -1,6 +1,0 @@
-# yaml-language-server: $schema=../schema.json
-profiles:
-  - name: Gateway
-    unhandeled: 
-      offset: 0
-      nameKey: LogCode

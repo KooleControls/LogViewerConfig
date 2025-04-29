@@ -1,12 +1,15 @@
 # yaml-language-server: $schema=../schema.json
 
 sources:
-  - Indoorunit 2 traces.yaml
-  - Indoorunit 3 traces.yaml
-  - Manager traces.yaml
-  - Modbus.yaml
-  - Thermostat traces.yaml
-  - Unknown logcodes.yaml
-  - Filter.yaml
-  - Indoorunit 0 traces.yaml
-  - Indoorunit 1 traces.yaml
+ - Filter.yaml
+ - Gateway.yaml
+ - IndoorUnit_0.yaml
+ - IndoorUnit_1.yaml
+ - IndoorUnit_2.yaml
+ - IndoorUnit_3.yaml
+ - Manager.yaml
+ - Modbus.yaml
+ - Thermostat.yaml
+ - Unknown.yaml
+
+ 
