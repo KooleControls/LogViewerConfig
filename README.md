@@ -14,8 +14,6 @@ The configuration system is designed to be **modular**, **mergeable**, and **fal
 ```
 Sources.yaml                # Top-level config listing all config files
 schema.json                 # JSON schema for VSCode validation/autocomplete
-Organisations.yaml          # Contains API settings (e.g., credentials or endpoints)
-
 Gateway/
   ├─ Gateway.yaml           # Entry point for Gateway config group
   ├─ ...
