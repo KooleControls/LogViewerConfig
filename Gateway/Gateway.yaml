@@ -1,6 +1,5 @@
 sources:
  - Filter.yaml
- - Gateway.yaml
  - IndoorUnit_0.yaml
  - IndoorUnit_1.yaml
  - IndoorUnit_2.yaml
