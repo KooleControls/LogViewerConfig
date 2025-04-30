@@ -1,4 +1,4 @@
-# 🧩 LogViewer Configuration
+# LogViewer Configuration
 
 This repository contains the **public YAML configuration files** used by the LogViewer tool.
 
@@ -8,7 +8,7 @@ The configuration system is designed to make it easy to extend, override, and wo
 [https://vscode.dev/github/KooleControls/LogViewerConfig](https://vscode.dev/github/KooleControls/LogViewerConfig)
 
 
-## ✍️ Add your own organisations
+## Add your own organisations
 
 You can add custom organisation settings by creating a local YAML file:
 
@@ -22,13 +22,13 @@ organisations:
     authPath: https://accounts.mycompany.com/realms/myrealm
 ```
 
-Next add a new source to the config file on your pc.
+Next, add the new file to the main config file on your pc.
 If it doesn’t exist, you can start the tool, it will be created automatically.
 
 ```yaml
 #%LOCALAPPDATA%\LogViewer\config.yaml
 sources:
-  - https://raw.githubusercontent.com/KooleControls/LogViewerConfig/main/Sources.yaml
+  - https://raw.githubusercontent.com/KooleControls/LogViewerConfig/Releases/%APPVERSION%/Sources.yaml 
   - %LOCALAPPDATA%\LogViewer\user\organisations.yaml
 ```
 
@@ -36,19 +36,19 @@ sources:
 
 ```yaml
 sources:
-#  - https://raw.githubusercontent.com/KooleControls/LogViewerConfig/main/Sources.yaml
+#  - https://raw.githubusercontent.com/KooleControls/LogViewerConfig/Releases/%APPVERSION%/Sources.yaml 
   - %LOCALAPPDATA%\LogViewer\user\organisations.yaml
 ```
 
 
-## ✅ Features Overview
+## Features Overview
 
 | Feature | Description |
 |:--------|:------------|
-| 🔄 **Merging** | Profiles, traces, and settings are merged based on their name/type |
-| 🔗 **Recursive loading** | Config files can include other sources recursively |
-| 💾 **Caching** | Remote configs are cached locally for offline use |
-| ✍️ **Schema-based editing** | VSCode supports YAML validation and autocomplete via `schema.json` |
-| 🔒 **Offline fallback** | Always uses the last cached version if offline or unreachable |
+| **Merging** | Profiles, traces, and settings are merged based on their name/type |
+| **Recursive loading** | Config files can include other sources recursively |
+| **Caching** | Remote configs are cached locally for offline use |
+| **Schema-based editing** | VSCode supports YAML validation and autocomplete via `schema.json` |
+| **Offline fallback** | Always uses the last cached version if offline or unreachable |
 
 
