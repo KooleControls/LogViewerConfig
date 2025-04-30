@@ -1,7 +1,9 @@
 profiles:
-  - name: Gateway
+  gateway:
+    name: Gateway
     traces:
-      - name: Smarthome
+      Smarthome:
+        name: Smarthome
         unit: ""
         color: 0xFF1FFF53
         offset: -3
@@ -18,13 +20,10 @@ profiles:
           6: NightTime
           7: ExtendedNightTime 
         includeLogs:
-          criteriaSets:
-            - conditions:
-              - key: SoftwareId
-                value: SmarthomeGateway
-              - key: LogCode
-                value: SmartHomeStateChanged
-      - name: Heatmanager
+          SoftwareId: SmarthomeGateway
+          LogCode: SmartHomeStateChanged
+      Heatmanager:
+        name: Heatmanager
         unit: ""
         color: 0xFF18CC43
         offset: -4.5
@@ -38,13 +37,10 @@ profiles:
           3: Heating
           4: Off
         includeLogs:
-          criteriaSets:
-            - conditions:
-              - key: SoftwareId
-                value: SmarthomeGateway
-              - key: LogCode
-                value: HeatmanagerStateChanged
-      - name: Heating
+          SoftwareId: SmarthomeGateway
+          LogCode: HeatmanagerStateChanged
+      Heating:
+        name: Heating
         unit: ""
         color: 0xFFFF6F00
         offset: -7.5
@@ -55,13 +51,10 @@ profiles:
           0: Off
           1: On
         includeLogs:
-          criteriaSets:
-            - conditions:
-              - key: SoftwareId
-                value: SmarthomeGateway
-              - key: LogCode
-                value: HeaterActiveChanged
-      - name: Cooling
+          SoftwareId: SmarthomeGateway
+          LogCode: HeaterActiveChanged
+      Cooling:
+        name: Cooling
         unit: ""
         color: 0xFF0074CC
         offset: -10.5
@@ -72,10 +65,6 @@ profiles:
           0: Off
           1: On
         includeLogs:
-          criteriaSets:
-            - conditions:
-              - key: SoftwareId
-                value: SmarthomeGateway
-              - key: LogCode
-                value: CoolerActiveChanged
+          SoftwareId: SmarthomeGateway
+          LogCode: CoolerActiveChanged
             

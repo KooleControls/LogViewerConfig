@@ -3,16 +3,16 @@ profiles:
     name: Gateway
     traces:
       thermostatAct:
-        name: Thermostat temperature
+        name: THR Temp
         unit: "°C"
         color: 0xFFFFFF00
         drawStyle: Lines
         visible: Always
-        logFilter:
+        includeLogs:
           SoftwareId: SmarthomeGateway
           LogCode: Therm_TempActualChanged
       thermostatSetpoint:
-        name: Thermostat setpoint
+        name: THR Setp
         unit: "°C"
         color: 0xFFFF0000
         drawStyle: NonInterpolatedLine
@@ -21,7 +21,7 @@ profiles:
           SoftwareId: SmarthomeGateway
           LogCode: Therm_TempSetpointChanged
       thermostatHeatReq:
-        name: Thermostat HeatReq
+        name: THR HeatReq
         unit: ""
         color: 0xFFCC5A00
         offset: -6
@@ -35,6 +35,7 @@ profiles:
           SoftwareId: SmarthomeGateway
           LogCode: Therm_HeatingRequestChanged
       thermostatCoolReq:
+        name: THR CoolReq
         unit: ""
         color: 0xFF008FFF
         offset: -9

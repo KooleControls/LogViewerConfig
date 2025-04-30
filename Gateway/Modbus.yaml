@@ -1,7 +1,10 @@
+
 profiles:
-  - name: Gateway
+  gateway:
+    name: Gateway
     traces:
-      - name: Modbus error
+      Modbus:
+        name: Modbus error
         unit: ""
         color: 0xFFFF4D4D
         drawStyle: State
@@ -27,9 +30,5 @@ profiles:
           15:	InvalidCRC 				
           16:	InvalidDeviceReply 	
         includeLogs:
-          criteriaSets:
-            - conditions:
-              - key: SoftwareId
-                value: SmarthomeGateway
-              - key: LogCode
-                value: CMN_ModbusError
+          SoftwareId: SmarthomeGateway
+          LogCode: CMN_ModbusError

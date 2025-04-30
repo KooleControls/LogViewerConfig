@@ -1,37 +1,34 @@
+
 profiles:
-  - name: Gateway
+  gateway:
+    name: Gateway
     traces:
-      - name: IU 0 Temperature
+      iu_0_temp:
+        name: IU 0 Temp
         unit: "°C"
         color: 0xFFFFFF4D
         drawStyle: Lines
         visible: WhenData
         includeLogs:
-          criteriaSets:
-            - conditions:
-              - key: SoftwareId
-                value: SmarthomeGateway
-              - key: DeviceId
-                value: 0
-              - key: LogCode
-                value: CMN_IndoorUnit_ActualTempChanged
-      - name: IU 0 Setpoint
+          SoftwareId: SmarthomeGateway
+          LogCode: CMN_IndoorUnit_ActualTempChanged
+          DeviceId: 0
+
+      iu_0_setpoint: 
+        name: IU 0 Setp
         unit: "°C"
         color: 0xFFFF4D4D
         drawStyle: NonInterpolatedLine
         drawOption: ExtendEnd
         visible: WhenData
         includeLogs:
-          criteriaSets:
-            - conditions:
-              - key: SoftwareId
-                value: SmarthomeGateway
-              - key: DeviceId
-                value: 0
-              - key: LogCode
-                value: CMN_IndoorUnit_SetpointChanged
-      - name: IU 0 Mode
-        unit: "°C"
+          SoftwareId: SmarthomeGateway
+          LogCode: CMN_IndoorUnit_SetpointChanged
+          DeviceId: 0
+
+      iu_0_mode: 
+        name: IU 0 Mode
+        unit: ""
         color: 0xFFFF3D3D
         drawStyle: State
         drawOption: ExtendEnd, DrawNames
@@ -52,15 +49,12 @@ profiles:
           11: Unknown		  
           12: Off	
         includeLogs:
-          criteriaSets:
-            - conditions:
-              - key: SoftwareId
-                value: SmarthomeGateway
-              - key: DeviceId
-                value: 0
-              - key: LogCode
-                value: CMN_IndoorUnit_ModeChanged
-      - name: IU 0 Power
+          SoftwareId: SmarthomeGateway
+          LogCode: CMN_IndoorUnit_ModeChanged
+          DeviceId: 0
+
+      iu_0_power: 
+        name: IU 0 Power
         unit: ""
         color: 0xFFFF3D3D
         drawStyle: State
@@ -71,15 +65,12 @@ profiles:
           0: Off
           1: On
         includeLogs:
-          criteriaSets:
-            - conditions:
-              - key: SoftwareId
-                value: SmarthomeGateway
-              - key: DeviceId
-                value: 0
-              - key: LogCode
-                value: CMN_IndoorUnit_OnOffChanged
-      - name: IU 0 FaultCode
+          SoftwareId: SmarthomeGateway
+          LogCode: CMN_IndoorUnit_OnOffChanged
+          DeviceId: 0
+
+      iu_0_fault: 
+        name: IU 0 Fault
         unit: ""
         color: 0xFFFF3D3D
         drawStyle: State
@@ -87,11 +78,6 @@ profiles:
         visible: WhenData
         offset: -15
         includeLogs:
-          criteriaSets:
-            - conditions:
-              - key: SoftwareId
-                value: SmarthomeGateway
-              - key: DeviceId
-                value: 0
-              - key: LogCode
-                value: CMN_IndoorUnit_FaultCodeChanged
+          SoftwareId: SmarthomeGateway
+          LogCode: CMN_IndoorUnit_FaultCodeChanged
+          DeviceId: 0
