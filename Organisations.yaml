@@ -1,13 +1,49 @@
 organisations:
-  kooleControls:
+  koole_controls:
     name: Koole Controls
     uri: https://api.koolecontrols.nl/kc/live/api
     organisationId: 1
     authenticationMethod: GetOAuth2_OpenIdConnectClient
     authPath: https://accounts.kcsmart.net/realms/kc/protocol/openid-connect/auth
+
   krim:
     name: De Krim
     uri: https://api.koolecontrols.nl/krim/live/api
     organisationId: 1
     authenticationMethod: GetOAuth2_OpenIdConnectClient
-    authPath: https://accounts.kcsmart.net/realms/kc/protocol/openid-connect/auth
+    authPath: https://accounts.kcsmart.net/realms/kc
+  
+  libema:
+    name: Libema
+    uri: https://lib.kcsmartho.me/api
+    organisationId: 1
+    authenticationMethod: GetOAuth2_OpenIdConnectClient
+    authPath: https://accounts.kcsmart.net/realms/lib
+
+  veerse_pot:
+    name: Veerse Pot
+    uri: https://vpt.kcsmartho.me/api
+    organisationId: 1
+    authenticationMethod: GetOAuth2_OpenIdConnectClient
+    authPath: https://accounts.kcsmart.net/realms/vpt
+
+  rcn:
+    name: RCN
+    uri: https://api.koolecontrols.nl/rcn/live/api
+    organisationId: 1
+    authenticationMethod: GetOAuth2_OpenIdConnectClient
+    authPath: https://accounts.kcsmart.net/realms/kc
+
+  rcn_google:
+    name: RCN Google
+    uri: https://rcn.kcsmartho.me/api
+    organisationId: 1
+    authenticationMethod: GetOAuth2_OpenIdConnectClient
+    authPath: https://accounts.kcsmart.net/realms/rcn
+
+  aedes:
+    name: Aedes
+    uri: https://api.koolecontrols.nl/aedesmaritima/live/api
+    organisationId: 1
+    authenticationMethod: GetOAuth2_OpenIdConnectClient
+    authPath: https://accounts.kcsmart.net/realms/kc
