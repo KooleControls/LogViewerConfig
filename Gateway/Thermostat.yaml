@@ -1,32 +1,27 @@
 profiles:
-  - name: Gateway
+  gateway:
+    name: Gateway
     traces:
-      - name: Thr Temp
+      thermostatAct:
+        name: Thermostat temperature
         unit: "°C"
         color: 0xFFFFFF00
-        drawStyle:  Lines
+        drawStyle: Lines
         visible: Always
-        includeLogs:
-          criteriaSets:
-            - conditions:
-              - key: SoftwareId
-                value: SmarthomeGateway
-              - key: LogCode
-                value: Therm_TempActualChanged
-      - name: Thr Setpt
+        logFilter:
+          SoftwareId: SmarthomeGateway
+          LogCode: Therm_TempActualChanged
+      thermostatSetpoint:
+        name: Thermostat setpoint
         unit: "°C"
         color: 0xFFFF0000
         drawStyle: NonInterpolatedLine
-        drawOption: ExtendEnd
         visible: Always
         includeLogs:
-          criteriaSets:
-            - conditions:
-              - key: SoftwareId
-                value: SmarthomeGateway
-              - key: LogCode
-                value: Therm_TempSetpointChanged
-      - name: Thr Heat Req
+          SoftwareId: SmarthomeGateway
+          LogCode: Therm_TempSetpointChanged
+      thermostatHeatReq:
+        name: Thermostat HeatReq
         unit: ""
         color: 0xFFCC5A00
         offset: -6
@@ -37,13 +32,9 @@ profiles:
           0: Off
           1: On
         includeLogs:
-          criteriaSets:
-            - conditions:
-              - key: SoftwareId
-                value: SmarthomeGateway
-              - key: LogCode
-                value: Therm_HeatingRequestChanged
-      - name: Thr Cool Req
+          SoftwareId: SmarthomeGateway
+          LogCode: Therm_HeatingRequestChanged
+      thermostatCoolReq:
         unit: ""
         color: 0xFF008FFF
         offset: -9
@@ -54,12 +45,5 @@ profiles:
           0: Off
           1: On
         includeLogs:
-          criteriaSets:
-            - conditions:
-              - key: SoftwareId
-                value: SmarthomeGateway
-              - key: LogCode
-                value: Therm_CoolingRequestChanged
-          
-      
-      
+          SoftwareId: SmarthomeGateway
+          LogCode: Therm_CoolingRequestChanged
